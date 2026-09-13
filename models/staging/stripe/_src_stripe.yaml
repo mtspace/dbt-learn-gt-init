@@ -1,0 +1,32 @@
+sources:
+  - name: stripe
+    description: "Source data from Snowflake for payments in the jaffle_shop project."
+    database: raw
+    schema: stripe
+    tables:
+      - name: payments
+        description: "Raw source table for payment data."
+        columns:
+          - name: id
+            description: "Unique identifier for each payment."
+            data_tests:
+              - not_null
+              - unique
+          - name: orderid
+            description: "Identifier for the order associated with the payment."
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('jaffle_shop', 'orders')
+                    field: id
+          - name: amount
+            description: "Amount of the payment."
+            data_tests:
+              - not_null
+        config:
+          loaded_at_field: CREATED
+          freshness:
+            warn_after: {count: 12, period: hour}
+            error_after: {count: 24, period: hour}
+            

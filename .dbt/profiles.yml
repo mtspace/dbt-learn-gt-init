@@ -1,0 +1,13 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      threads: 16
+      account: IRNMFPU-MZ28292
+      user: MTSPACE
+      database: RAW
+      warehouse: TRANSFORMING
+      schema: JAFFLE_SHOP
+      password: lQjb4EMCD,yNOI
+      role: ACCOUNTADMIN

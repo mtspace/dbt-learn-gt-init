@@ -1,0 +1,29 @@
+sources:
+  - name: jaffle_shop
+    description: "Source data from Snowflake for the jaffle_shop project."
+    database: raw
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: "Raw source table for customer data."
+        columns:
+          - name: id
+            description: "Unique identifier for each customer."
+            data_tests:
+              - not_null
+              - unique
+      - name: orders
+        description: "Raw source table for order data."
+        columns:
+          - name: id
+            description: "Unique identifier for each order."
+            data_tests:
+              - not_null
+              - unique
+          - name: user_id
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('jaffle_shop', 'customers')
+                    field: id

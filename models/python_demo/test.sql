@@ -1,0 +1,1 @@
+select * from {{ ref('is_holiday_2020') }} where is_holiday = true

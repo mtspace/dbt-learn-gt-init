@@ -1,0 +1,16 @@
+seeds:
+  - name: employees
+    description: "This is a seed file for employees data."
+    columns:
+      - name: EMPLOYEE_ID
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+      - name: CUSTOMER_ID
+        description: "Identifier linking the employee to a customer, if applicable."
+      - name: email
+        description: "Email address of the employee."
+    config:
+      +grants:
+        select: ["snowflake_learning_role"]
